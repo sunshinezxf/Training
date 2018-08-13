@@ -10,12 +10,14 @@ import java.util.Map;
 
 @Repository
 public class ChoiceQuestionDaoImpl extends BaseDao implements ChoiceQuestionDao {
+    @Override
     public ResultData query(Map<String, Object> condition) {
         ResultData result = new ResultData();
         sqlSession.selectList("", condition);
         return result;
     }
 
+    @Override
     public ResultData insert(ChoiceQuestion choiceQuestion) {
         sqlSession.insert("", choiceQuestion);
         return null;
