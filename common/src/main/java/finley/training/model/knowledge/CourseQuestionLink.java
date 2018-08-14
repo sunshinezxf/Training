@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class CoursequestionLink extends Entity {
+public class CourseQuestionLink extends Entity {
 
     private String courseId;
 
