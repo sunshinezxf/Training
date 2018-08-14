@@ -12,5 +12,15 @@ public class CourseQuestionLink extends Entity {
 
     private String questionId;
 
+    private String CourseQuestionLinkId;
 
+    public CourseQuestionLink() {
+        super();
+    }
+
+    public CourseQuestionLink(String courseId, String questionId) {
+        this();
+        this.courseId = courseId;
+        this.questionId = questionId;
+    }
 }

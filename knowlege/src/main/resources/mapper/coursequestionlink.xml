@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="finley.training.coursequestionlink" >
+    <resultMap id="CoursequestionlinkVo" type="finley.training.model.knowledge.CourseQuestionLink" >
+        <result column="course_id" property="courseId"/>
+        <result column="question_id" property="questionId" />
+        <result column="block_flag" property="blockFlag" />
+        <result column="create_time" property="createAt" />
+    </resultMap>
+
+    <select id="query" resultMap="CoursequestionlinkVo" parameterType="java.util.Map" >
+        select course_id, question_id, block_flag, create_time
+        from training.coursequestionlink
+        where 1 = 1
+        <if test="courseId != null">
+            and course_id = #{courseId}
+        </if>
+        <if test="questionId!= null">
+            and question_id = #{questionId}
+        </if>
+        <if test="blockFlag != null">
+            and block_flag = #{blockFlag}
+        </if>
+        order by create_time desc
+    </select>
+
+    <insert id="insert" parameterType="finley.training.model.knowledge.Coursequestionlink" useGeneratedKeys="false">
+        insert into training.coursequestionlink(course_id, question_id, block_flag, create_time)
+        values (#{courseId},#{questionId},#{blockFlag},#{createTime})
+    </insert>
+
+</mapper>

@@ -10,4 +10,6 @@ public interface ChoiceQuestionDao {
     ResultData query(Map<String, Object> condition);
 
     ResultData insert(ChoiceQuestion choiceQuestion);
+
+    ResultData update(Map<String, Object> condition);
 }
