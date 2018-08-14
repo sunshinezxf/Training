@@ -22,7 +22,7 @@ public class CourseQuestionLinkController {
         ResultData result = new ResultData();
         Map<String, Object> condition = new HashMap<>();
         condition.put("blockFlag", false);
-        condition.put("coursequestionlinkId", "1");
+        condition.put("courseQuestionLinkId", "1");
         ResultData response = courseQuestionLinkService.fetch(condition);
         if (response.getResponseCode() == ResponseCode.RESPONSE_NULL) {
             result.setResponseCode(ResponseCode.RESPONSE_NULL);

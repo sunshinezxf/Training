@@ -10,7 +10,7 @@
 
     <select id="query" resultMap="CourseQuestionLinkVo" parameterType="java.util.Map" >
         select course_id, question_id, block_flag, create_time
-        from training.coursequestionlink
+        from training.course_question_link
         where 1 = 1
         <if test="courseId != null">
             and course_id = #{courseId}
@@ -24,8 +24,8 @@
         order by create_time desc
     </select>
 
-    <insert id="insert" parameterType="finley.training.model.knowledge.Coursequestionlink" useGeneratedKeys="false">
-        insert into training.coursequestionlink(course_id, question_id, block_flag, create_time)
+    <insert id="insert" parameterType="finley.training.model.knowledge.CourseQuestionLink" useGeneratedKeys="false">
+        insert into training.course_question_link(course_id, question_id, block_flag, create_time)
         values (#{courseId},#{questionId},#{blockFlag},#{createTime})
     </insert>
 

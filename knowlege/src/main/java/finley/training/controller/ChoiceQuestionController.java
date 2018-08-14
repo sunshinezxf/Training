@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/knowledge/choicequestion")
+@RequestMapping("/knowledge/choiceQuestion")
 public class ChoiceQuestionController {
     @Autowired
     private ChoiceQuestionService choiceQuestionService;
