@@ -18,10 +18,11 @@ public class ChoiceQuestionDaoImpl extends BaseDao implements ChoiceQuestionDao 
     public ResultData query(Map<String, Object> condition) {
         ResultData result = new ResultData();
         try{
-            List<ChoiceQuestion> list=sqlSession.selectList("finley.training.choice_question.select",condition);
+            List<ChoiceQuestion> list=sqlSession.selectList("finley.training.choiceQuestion.query",condition);
             if(list.isEmpty()){
                 result.setResponseCode(ResponseCode.RESPONSE_NULL);
             }
+            result.setData(list);
         }catch (Exception e){
             e.printStackTrace();
             result.setResponseCode(ResponseCode.RESPONSE_ERROR);
