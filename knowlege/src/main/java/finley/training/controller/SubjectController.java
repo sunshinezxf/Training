@@ -1,8 +1,10 @@
 package finley.training.controller;
 
+import finley.training.model.knowledge.Subject;
 import finley.training.service.SubjectService;
 import form.knowledge.SubjectForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,7 +44,21 @@ public class SubjectController {
     @RequestMapping(method = RequestMethod.POST, value = "/create")
     public ResultData createSubject(SubjectForm form) {
         ResultData result = new ResultData();
+        if (StringUtils.isEmpty(form.getSubjectLink()) || StringUtils.isEmpty(form.getSubjectName())) {
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription("Please make sure you fill all the required fields");
+            return result;
+        }
 
+        Subject subject = new Subject(form.getSubjectName(), form.getSubjectLink());
+        ResultData response = subjectService.create(subject);
+        if (response.getResponseCode() != ResponseCode.RESPONSE_OK) {
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription("Fail to store subject");
+            return result;
+        }
+        result.setResponseCode(ResponseCode.RESPONSE_OK);
+        result.setData(response.getData());
         return result;
     }
 }
