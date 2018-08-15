@@ -1,6 +1,7 @@
 package finley.training.controller;
 
 import finley.training.service.SubjectService;
+import form.knowledge.SubjectForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +23,6 @@ public class SubjectController {
         ResultData result = new ResultData();
         Map<String, Object> condition = new HashMap<>();
         condition.put("blockFlag", false);
-        condition.put("subjectId", "1");
         ResultData response = subjectService.fetch(condition);
         if (response.getResponseCode() == ResponseCode.RESPONSE_NULL) {
             result.setResponseCode(ResponseCode.RESPONSE_NULL);
@@ -36,6 +36,13 @@ public class SubjectController {
             result.setResponseCode(ResponseCode.RESPONSE_OK);
             result.setData(response.getData());
         }
+        return result;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/create")
+    public ResultData createSubject(SubjectForm form) {
+        ResultData result = new ResultData();
+
         return result;
     }
 }
