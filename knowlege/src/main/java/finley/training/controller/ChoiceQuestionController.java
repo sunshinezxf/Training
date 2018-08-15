@@ -1,13 +1,17 @@
 package finley.training.controller;
 
+import com.ctc.wstx.util.StringUtil;
 import finley.training.service.ChoiceQuestionService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import util.ResponseCode;
 import util.ResultData;
 
+import javax.ws.rs.core.Request;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,5 +41,6 @@ public class ChoiceQuestionController {
         }
         return result;
     }
+
 
 }
