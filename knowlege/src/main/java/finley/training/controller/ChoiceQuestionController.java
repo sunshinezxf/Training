@@ -22,7 +22,6 @@ public class ChoiceQuestionController {
         ResultData result = new ResultData();
         Map<String, Object> condition = new HashMap<>();
         condition.put("blockFlag", false);
-        condition.put("courseId", "1");
         ResultData response = choiceQuestionService.fetch(condition);
         if (response.getResponseCode() == ResponseCode.RESPONSE_NULL) {
             result.setResponseCode(ResponseCode.RESPONSE_NULL);
@@ -38,6 +37,5 @@ public class ChoiceQuestionController {
         }
         return result;
     }
+
 }
-
-

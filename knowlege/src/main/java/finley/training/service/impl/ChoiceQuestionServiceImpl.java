@@ -39,11 +39,25 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService {
         ResultData result=new ResultData();
         ResultData response=choiceQuestionDao.insert(choiceQuestion);
         if(response.getResponseCode()!=ResponseCode.RESPONSE_OK){
-            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
-            result.setDescription("Fail to store choice_question to database");
-        }else {
-            response.setResponseCode(ResponseCode.RESPONSE_OK);
+            result.setResponseCode(ResponseCode.RESPONSE_OK);
             result.setData(response.getData());
+        }else {
+            response.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription("Fail to insert choice_question from database");
+        }
+        return result;
+    }
+
+    @Override
+    public ResultData revise(ChoiceQuestion choiceQuestion) {
+        ResultData result=new ResultData();
+        ResultData response=choiceQuestionDao.update(choiceQuestion);
+        if(response.getResponseCode()==ResponseCode.RESPONSE_OK){
+            result.setResponseCode(ResponseCode.RESPONSE_OK);
+            result.setData(response.getData());
+        }else{
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription("Fail to update choice_question from database");
         }
         return result;
     }

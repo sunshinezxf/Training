@@ -47,10 +47,11 @@ public class ChoiceQuestionDaoImpl extends BaseDao implements ChoiceQuestionDao 
     }
 
     @Override
-    public ResultData update(Map<String, Object> condition) {
+    public ResultData update(ChoiceQuestion choiceQuestion) {
         ResultData result=new ResultData();
         try{
-            sqlSession.update("finley.training.choiceQuestion.update",condition);
+            sqlSession.update("finley.training.choiceQuestion.update",choiceQuestion);
+            result.setData(choiceQuestion);
         }catch(Exception e){
             e.printStackTrace();
             result.setResponseCode(ResponseCode.RESPONSE_ERROR);

@@ -11,5 +11,5 @@ public interface ChoiceQuestionDao {
 
     ResultData insert(ChoiceQuestion choiceQuestion);
 
-    ResultData update(Map<String, Object> condition);
+    ResultData update(ChoiceQuestion choiceQuestion);
 }

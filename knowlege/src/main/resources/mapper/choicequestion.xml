@@ -33,7 +33,7 @@
         values (#{questionId},#{questionTitle},#{questionOption},#{blockFlag},#{createTime})
     </insert>
 
-    <update id="update" parameterType="java.util.Map">
+    <update id="update" parameterType="finley.training.model.knowledge.ChoiceQuestion">
         UPDATE training.choice_question
         <set>
             <if test="question_title != null">
