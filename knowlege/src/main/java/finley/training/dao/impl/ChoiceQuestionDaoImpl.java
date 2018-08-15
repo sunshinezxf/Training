@@ -37,7 +37,7 @@ public class ChoiceQuestionDaoImpl extends BaseDao implements ChoiceQuestionDao 
         choiceQuestion.setQuestionId(IDGenerator.generate("CHQ"));
         choiceQuestion.setCreateAt(new Timestamp(System.currentTimeMillis()));
         try{
-            sqlSession.insert("finley.training.choice_question",choiceQuestion);
+            sqlSession.insert("finley.training.choiceQuestion.insert",choiceQuestion);
             result.setData(choiceQuestion);
         }catch(Exception e){
             result.setResponseCode(ResponseCode.RESPONSE_ERROR);
@@ -50,7 +50,7 @@ public class ChoiceQuestionDaoImpl extends BaseDao implements ChoiceQuestionDao 
     public ResultData update(Map<String, Object> condition) {
         ResultData result=new ResultData();
         try{
-            sqlSession.update("finley.training.choice_question.update",condition);
+            sqlSession.update("finley.training.choiceQuestion.update",condition);
         }catch(Exception e){
             e.printStackTrace();
             result.setResponseCode(ResponseCode.RESPONSE_ERROR);

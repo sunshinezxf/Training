@@ -18,7 +18,7 @@ public class CourseQuestionLinkDaoImpl extends BaseDao implements CourseQuestion
     public ResultData query(Map<String, Object> condition) {
         ResultData result = new ResultData();
         try {
-            List<CourseQuestionLink> list = sqlSession.selectList("finley.training.coursequestionlink.query", condition);
+            List<CourseQuestionLink> list = sqlSession.selectList("finley.training.courseQuestionLink.query", condition);
             if (list.isEmpty()) {
                 result.setResponseCode(ResponseCode.RESPONSE_NULL);
             }
@@ -36,7 +36,7 @@ public class CourseQuestionLinkDaoImpl extends BaseDao implements CourseQuestion
         ResultData result = new ResultData();
         coursequestionLink.setCourseQuestionLinkId(IDGenerator.generate("CQL"));
         try {
-            sqlSession.insert("finley.training.coursequestionlink.insert", coursequestionLink);
+            sqlSession.insert("finley.training.courseQuestionLink.insert", coursequestionLink);
             result.setData(coursequestionLink);
         } catch (Exception e){
             e.printStackTrace();
