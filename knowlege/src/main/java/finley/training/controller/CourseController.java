@@ -18,7 +18,7 @@ public class CourseController {
     private CourseService courseService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/list")
-    public ResultData getSubject() {
+    public ResultData getCourse() {
         ResultData result = new ResultData();
         Map<String, Object> condition = new HashMap<>();
         condition.put("blockFlag", false);
