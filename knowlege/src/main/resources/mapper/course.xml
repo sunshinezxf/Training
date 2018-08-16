@@ -24,8 +24,8 @@
         order by create_time desc
     </select>
 
-    <insert id="insert" parameterType="finley.training.model.knowledge.Subject" useGeneratedKeys="false">
-        insert into training.subject(course_id, subject_id, block_flag, create_time)
+    <insert id="insert" parameterType="finley.training.model.knowledge.Course" useGeneratedKeys="false">
+        insert into training.course(course_id,subject_id,block_flag,create_time)
         values (#{courseId}, #{subjectId}, #{blockFlag}, #{createAt})
     </insert>
 
