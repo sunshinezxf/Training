@@ -8,4 +8,6 @@ import lombok.Setter;
 public class CourseForm {
 
     private String subjectId;
+
+    private String courseDescription;
 }

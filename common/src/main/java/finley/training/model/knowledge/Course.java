@@ -11,12 +11,15 @@ public class Course extends Entity {
 
     private String subjectId;
 
+    private String courseDescription;
+
     public Course() {
         super();
     }
 
-    public Course(String subjectId) {
+    public Course(String subjectId, String courseDescription) {
         this();
         this.subjectId = subjectId;
+        this.courseDescription = courseDescription;
     }
 }

@@ -12,8 +12,6 @@ public class CourseQuestionLink extends Entity {
 
     private String questionId;
 
-    private String CourseQuestionLinkId;
-
     public CourseQuestionLink() {
         super();
     }

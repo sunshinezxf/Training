@@ -34,7 +34,6 @@ public class CourseQuestionLinkDaoImpl extends BaseDao implements CourseQuestion
     @Override
     public ResultData insert(CourseQuestionLink coursequestionLink) {
         ResultData result = new ResultData();
-        coursequestionLink.setCourseQuestionLinkId(IDGenerator.generate("CQL"));
         try {
             sqlSession.insert("finley.training.courseQuestionLink.insert", coursequestionLink);
             result.setData(coursequestionLink);
