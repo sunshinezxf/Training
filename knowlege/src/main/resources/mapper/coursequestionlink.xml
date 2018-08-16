@@ -26,7 +26,7 @@
 
     <insert id="insert" parameterType="finley.training.model.knowledge.CourseQuestionLink" useGeneratedKeys="false">
         insert into training.course_question_link(course_id, question_id, block_flag, create_time)
-        values (#{courseId},#{questionId},#{blockFlag},#{createTime})
+        values (#{courseId},#{questionId},#{blockFlag},#{createAt})
     </insert>
 
 </mapper>
