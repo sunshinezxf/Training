@@ -38,7 +38,7 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService {
     public ResultData create(ChoiceQuestion choiceQuestion){
         ResultData result=new ResultData();
         ResultData response=choiceQuestionDao.insert(choiceQuestion);
-        if(response.getResponseCode()!=ResponseCode.RESPONSE_OK){
+        if(response.getResponseCode()==ResponseCode.RESPONSE_OK){
             result.setResponseCode(ResponseCode.RESPONSE_OK);
             result.setData(response.getData());
         }else {

@@ -58,6 +58,7 @@ public class ChoiceQuestionController {
         }
         result.setResponseCode(ResponseCode.RESPONSE_OK);
         result.setData(response.getData());
+        result.setDescription("Successful!");
         return result;
     }
 

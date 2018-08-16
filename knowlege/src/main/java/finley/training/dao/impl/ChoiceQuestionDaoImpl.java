@@ -39,6 +39,7 @@ public class ChoiceQuestionDaoImpl extends BaseDao implements ChoiceQuestionDao 
             sqlSession.insert("finley.training.choiceQuestion.insert",choiceQuestion);
             result.setData(choiceQuestion);
         }catch(Exception e){
+            e.printStackTrace();
             result.setResponseCode(ResponseCode.RESPONSE_ERROR);
             result.setDescription(e.getMessage());
         }
