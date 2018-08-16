@@ -59,6 +59,7 @@ public class SubjectController {
         }
         result.setResponseCode(ResponseCode.RESPONSE_OK);
         result.setData(response.getData());
+        result.setDescription("Successful!");
         return result;
     }
 }
