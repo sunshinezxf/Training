@@ -1,11 +1,13 @@
 package finley.training.controller;
 
+import finley.training.model.knowledge.Subject;
 import finley.training.service.ChoiceQuestionService;
 import finley.training.service.CourseQuestionLinkService;
 import finley.training.service.CourseService;
 import finley.training.service.SubjectService;
 import form.knowledge.SubjectForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import util.ResponseCode;
 import util.ResultData;
@@ -55,11 +57,25 @@ public class DomainController {
     }
 
     @PostMapping(value = "/subject/create")
-    public ResultData createSubject(SubjectForm form) {
+    public ResultData createSubject(SubjectForm subjectForm) {
         ResultData result = new ResultData();
-
+        if(StringUtils.isEmpty(subjectForm.getSubjectName())||StringUtils.isEmpty(subjectForm.getSubjectLink())){
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription("Please check your data");
+            return result;
+        }
+        Subject subject=new Subject(subjectForm.getSubjectName(),subjectForm.getSubjectLink());
+        ResultData response=subjectService.create(subject);
+        if(response.getResponseCode()!=ResponseCode.RESPONSE_OK){
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription("Fail to store subject");
+            return result;
+        }
+        result.setResponseCode(ResponseCode.RESPONSE_OK);
+        result.setData(response.getData());
         return result;
     }
+
 
     @RequestMapping(method = RequestMethod.GET, value = "/courseQuestionLink/list")
     public ResultData queryCourseQuestionLink() {
