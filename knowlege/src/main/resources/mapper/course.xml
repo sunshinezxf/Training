@@ -4,12 +4,13 @@
     <resultMap id="courseVo" type="finley.training.model.knowledge.Course">
         <result property="courseId" column="course_id"/>
         <result property="subjectId" column="subject_id"/>
+        <result property="courseDescription" column="course_description"/>
         <result column="block_flag" property="blockFlag" />
         <result column="create_time" property="createAt" />
     </resultMap>
 
     <select id="query" resultMap="courseVo" parameterType="java.util.Map" >
-        select course_id, subject_id, block_flag, create_time
+        select course_id, subject_id, course_description, block_flag, create_time
         from training.course
         where 1 = 1
         <if test="subjectId != null">
@@ -18,6 +19,9 @@
         <if test="courseId != null">
             and course_id = #{courseId}
         </if>
+        <if test="courseDescription != null">
+            and course_description = #{courseDescription}
+        </if>
         <if test="blockFlag != null">
             and block_flag = #{blockFlag}
         </if>
@@ -25,8 +29,8 @@
     </select>
 
     <insert id="insert" parameterType="finley.training.model.knowledge.Course" useGeneratedKeys="false">
-        insert into training.course(course_id,subject_id,block_flag,create_time)
-        values (#{courseId}, #{subjectId}, #{blockFlag}, #{createAt})
+        insert into training.course(course_id,subject_id,course_description,block_flag,create_time)
+        values (#{courseId}, #{subjectId}, #{courseDescription}, #{blockFlag}, #{createAt})
     </insert>
 
 </mapper>
