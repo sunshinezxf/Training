@@ -1,10 +1,12 @@
 package finley.training.controller;
 
+import finley.training.model.knowledge.Course;
 import finley.training.model.knowledge.Subject;
 import finley.training.service.ChoiceQuestionService;
 import finley.training.service.CourseQuestionLinkService;
 import finley.training.service.CourseService;
 import finley.training.service.SubjectService;
+import form.knowledge.CourseForm;
 import form.knowledge.SubjectForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -121,4 +123,25 @@ public class DomainController {
         }
         return result;
     }
+
+    @PostMapping(value = "/course/create")
+    public ResultData createCourse(CourseForm courseForm) {
+        ResultData result = new ResultData();
+        if(StringUtils.isEmpty(courseForm.getCourseDescription())|| StringUtils.isEmpty(courseForm.getSubjectId())) {
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription("Please check your data");
+            return result;
+        }
+        Course course = new Course (courseForm.getSubjectId(),courseForm.getCourseDescription());
+        ResultData response = courseService.create(course);
+        if (response.getResponseCode()!=ResponseCode.RESPONSE_OK){
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription("Fail to store subject");
+            return result;
+        }
+        result.setResponseCode(ResponseCode.RESPONSE_OK);
+        result.setData(response.getData());
+        return result;
+    }
+
 }
