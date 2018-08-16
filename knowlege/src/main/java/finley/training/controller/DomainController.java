@@ -1,12 +1,14 @@
 package finley.training.controller;
 
 import finley.training.model.knowledge.Course;
+import finley.training.model.knowledge.CourseQuestionLink;
 import finley.training.model.knowledge.Subject;
 import finley.training.service.ChoiceQuestionService;
 import finley.training.service.CourseQuestionLinkService;
 import finley.training.service.CourseService;
 import finley.training.service.SubjectService;
 import form.knowledge.CourseForm;
+import form.knowledge.CourseQuestionForm;
 import form.knowledge.SubjectForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -101,6 +103,25 @@ public class DomainController {
         return result;
     }
 
+    @PostMapping(value = "/courseQuestionLink/create")
+    public ResultData createCQLink(CourseQuestionForm courseQuestionForm){
+        ResultData result=new ResultData();
+        if(StringUtils.isEmpty(courseQuestionForm.getCourseId())||StringUtils.isEmpty(courseQuestionForm.getQuestionId())){
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription("Please check your data not null");
+            return result;
+        }
+        CourseQuestionLink courseQuestionLink=new CourseQuestionLink(courseQuestionForm.getCourseId(),courseQuestionForm.getCourseId());
+        ResultData response=courseQuestionLinkService.create(courseQuestionLink);
+        if(response.getResponseCode()!=ResponseCode.RESPONSE_OK){
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription("Fail to store course question link");
+            return  result;
+        }
+        result.setResponseCode(ResponseCode.RESPONSE_OK);
+        result.setData(response.getData());
+        return result;
+    }
 
     @RequestMapping(method = RequestMethod.GET, value = "/course/list")
     public ResultData queryCourse() {
