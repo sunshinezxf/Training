@@ -1,8 +1,8 @@
 package finley.training.controller;
 
-import com.ctc.wstx.util.StringUtil;
+import finley.training.model.knowledge.ChoiceQuestion;
 import finley.training.service.ChoiceQuestionService;
-import org.springframework.beans.BeanUtils;
+import form.knowledge.ChoiceQuestionForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import util.ResponseCode;
 import util.ResultData;
 
-import javax.ws.rs.core.Request;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +40,25 @@ public class ChoiceQuestionController {
         }
         return result;
     }
+    @RequestMapping(method= RequestMethod.POST,value="/create")
+    public ResultData createChoice(ChoiceQuestionForm choiceQuestionForm){
+        ResultData result=new ResultData();
+        if(StringUtils.isEmpty(choiceQuestionForm.getQuestionTitle())||StringUtils.isEmpty(choiceQuestionForm.getQuestionOption())){
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription("Please make sure you fill all the required fields");
+            return result;
+        }
 
+        ChoiceQuestion choiceQuestion=new ChoiceQuestion(choiceQuestionForm.getQuestionTitle(),choiceQuestionForm.getQuestionOption());
+        ResultData response=choiceQuestionService.create(choiceQuestion);
+        if(response.getResponseCode()!=ResponseCode.RESPONSE_OK){
+            result.setResponseCode(ResponseCode.RESPONSE_ERROR);
+            result.setDescription("Fail to store choice question");
+            return result;
+        }
+        result.setResponseCode(ResponseCode.RESPONSE_OK);
+        result.setData(response.getData());
+        return result;
+    }
 
 }

@@ -30,7 +30,7 @@
 
     <insert id="insert" parameterType="finley.training.model.knowledge.ChoiceQuestion" useGeneratedKeys="false">
         insert into training.choice_question(question_id ,question_title ,question_option, block_flag, create_time)
-        values (#{questionId},#{questionTitle},#{questionOption},#{blockFlag},#{createTime})
+        values (#{questionId},#{questionTitle},#{questionOption},#{blockFlag},#{createAt})
     </insert>
 
     <update id="update" parameterType="finley.training.model.knowledge.ChoiceQuestion">
