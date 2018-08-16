@@ -4,7 +4,6 @@ import finley.training.dao.BaseDao;
 import finley.training.dao.CourseQuestionLinkDao;
 import finley.training.model.knowledge.CourseQuestionLink;
 import org.springframework.stereotype.Repository;
-import util.IDGenerator;
 import util.ResponseCode;
 import util.ResultData;
 
@@ -34,7 +33,6 @@ public class CourseQuestionLinkDaoImpl extends BaseDao implements CourseQuestion
     @Override
     public ResultData insert(CourseQuestionLink coursequestionLink) {
         ResultData result = new ResultData();
-        coursequestionLink.setCourseQuestionLinkId(IDGenerator.generate("CQL"));
         try {
             sqlSession.insert("finley.training.courseQuestionLink.insert", coursequestionLink);
             result.setData(coursequestionLink);
